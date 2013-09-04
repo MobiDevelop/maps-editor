@@ -1,0 +1,29 @@
+<!-- Call this to fetch all the natives from the build server -->
+<project name="fetch-libs" default="all">
+	<property name="domain" value="http://libgdx.badlogicgames.com/nightlies/dist"/>
+	<target name="fetch">
+	
+		<!-- Get Core -->
+		<mkdir dir="maps-editor/libs" />
+		<get src="${domain}/gdx.jar" dest="maps-editor/libs"/>
+		<get src="${domain}/sources/gdx-sources.jar" dest="maps-editor/libs"/>
+		
+		<!-- Get Android -->
+		<mkdir dir="maps-editor-android/libs" />
+		<get src="${domain}/gdx-backend-android.jar" dest="maps-editor-android/libs"/>
+		<get src="${domain}/sources/gdx-backend-android-sources.jar" dest="maps-editor-android/libs"/>
+		<mkdir dir="maps-editor-android/libs/armeabi" />
+		<get src="${domain}/armeabi/libgdx.so" dest="maps-editor-android/libs/armeabi"/>
+		<mkdir dir="maps-editor-android/libs/armeabi-v7a" />
+		<get src="${domain}/armeabi-v7a/libgdx.so" dest="maps-editor-android/libs/armeabi-v7a"/>
+		
+		<!-- Get Desktop -->
+		<mkdir dir="maps-editor-desktop/libs" />
+		<get src="${domain}/gdx-natives.jar" dest="maps-editor-desktop/libs"/>
+		<get src="${domain}/gdx-backend-lwjgl.jar" dest="maps-editor-desktop/libs"/>
+		<get src="${domain}/gdx-backend-lwjgl-natives.jar" dest="maps-editor-desktop/libs"/>
+		<get src="${domain}/sources/gdx-backend-lwjgl-sources.jar" dest="maps-editor-desktop/libs"/>
+		
+	</target>
+	<target name="all" depends="fetch"/>
+</project>

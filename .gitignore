@@ -1,0 +1,14 @@
+.jar
+.dex
+.class
+
+maps/bin
+maps-basic/bin
+maps-editor/bin
+maps-editor/bin
+maps-editor/libs
+maps-editor-android/bin
+maps-editor-android/gen
+maps-editor-android/libs
+maps-editor-desktop/bin
+maps-editor-desktop/libs
