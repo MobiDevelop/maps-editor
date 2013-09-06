@@ -36,12 +36,12 @@ public class MapCommands {
 	public static class MoveMapCommand implements Command {
 
 		private Map map;
-		private int oldX;
-		private int oldY;
-		private int newX;
-		private int newY;
+		private float oldX;
+		private float oldY;
+		private float newX;
+		private float newY;
 		
-		public MoveMapCommand(Map map, int newX, int newY) {
+		public MoveMapCommand(Map map, float newX, float newY) {
 			this.map = map;
 			this.oldX = map.getX();
 			this.oldY = map.getY();
@@ -66,10 +66,10 @@ public class MapCommands {
 	public static class ResizeMapCommand implements Command {
 
 		private Map map;
-		private int oldWidth;
-		private int oldHeight;
-		private int newWidth;
-		private int newHeight;
+		private float oldWidth;
+		private float oldHeight;
+		private float newWidth;
+		private float newHeight;
 		
 		public ResizeMapCommand(Map map, int newWidth, int newHeight) {
 			this.map = map;

@@ -66,10 +66,10 @@ public final class MapObjectCommands {
 	public static class MoveObjectCommand implements Command {
 
 		private MapObject object;
-		private int oldX;
-		private int oldY;
-		private int newX;
-		private int newY;
+		private float oldX;
+		private float oldY;
+		private float newX;
+		private float newY;
 		
 		public MoveObjectCommand(MapObject object, int newX, int newY) {
 			this.object = object;
@@ -96,10 +96,10 @@ public final class MapObjectCommands {
 	public static class ResizeObjectCommand implements Command {
 
 		private MapObject object;
-		private int oldWidth;
-		private int oldHeight;
-		private int newWidth;
-		private int newHeight;
+		private float oldWidth;
+		private float oldHeight;
+		private float newWidth;
+		private float newHeight;
 		
 		public ResizeObjectCommand(MapObject object, int newWidth, int newHeight) {
 			this.object = object;

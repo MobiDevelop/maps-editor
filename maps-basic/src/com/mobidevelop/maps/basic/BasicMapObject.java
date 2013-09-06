@@ -10,13 +10,13 @@ public class BasicMapObject implements MapObject {
 	
 	private String name;
 	
-	private int x;
+	private float x;
 	
-	private int y;
+	private float y;
 
-	private int width;
+	private float width;
 	
-	private int height;
+	private float height;
 
 	private float rotation;
 	
@@ -45,42 +45,42 @@ public class BasicMapObject implements MapObject {
 	}
 	
 	@Override
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
 	@Override
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
 	@Override
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
 	@Override
-	public int getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
 	@Override
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
 	@Override
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
 	@Override
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 	
@@ -113,11 +113,11 @@ public class BasicMapObject implements MapObject {
 		this(layer, 0, 0);
 	}
 	
-	public BasicMapObject(MapLayer layer, int x, int y) {
+	public BasicMapObject(MapLayer layer, float x, float y) {
 		this(layer, x, y, 0, 0);
 	}
 
-	public BasicMapObject(MapLayer layer, int x, int y, int width, int height) {
+	public BasicMapObject(MapLayer layer, float x, float y, float width, float height) {
 		this.layer = layer;
 		this.x = x;
 		this.y = y;

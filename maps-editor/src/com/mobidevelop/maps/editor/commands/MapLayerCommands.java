@@ -66,10 +66,10 @@ public final class MapLayerCommands {
 	public static class MoveLayerCommand implements Command {
 
 		private MapLayer layer;
-		private int oldX;
-		private int oldY;
-		private int newX;
-		private int newY;
+		private float oldX;
+		private float oldY;
+		private float newX;
+		private float newY;
 		
 		public MoveLayerCommand(MapLayer layer, int newX, int newY) {
 			this.layer = layer;
@@ -96,10 +96,10 @@ public final class MapLayerCommands {
 	public static class ResizeLayerCommand implements Command {
 
 		private MapLayer layer;
-		private int oldWidth;
-		private int oldHeight;
-		private int newWidth;
-		private int newHeight;
+		private float oldWidth;
+		private float oldHeight;
+		private float newWidth;
+		private float newHeight;
 		
 		public ResizeLayerCommand(MapLayer layer, int newWidth, int newHeight) {
 			this.layer = layer;

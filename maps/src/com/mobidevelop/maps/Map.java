@@ -16,27 +16,29 @@
 
 package com.mobidevelop.maps;
 
-public interface Map {
+import com.badlogic.gdx.utils.Disposable;
+
+public interface Map extends Disposable {
 
 	public abstract String getName();
 
 	public abstract void setName(String name);
 
-	public abstract int getX();
+	public abstract float getX();
 
-	public abstract void setX(int x);
+	public abstract void setX(float x);
 
-	public abstract int getY();
+	public abstract float getY();
 
-	public abstract void setY(int y);
+	public abstract void setY(float y);
 
-	public abstract int getWidth();
+	public abstract float getWidth();
 
-	public abstract void setWidth(int width);
+	public abstract void setWidth(float width);
 
-	public abstract int getHeight();
+	public abstract float getHeight();
 
-	public abstract void setHeight(int height);
+	public abstract void setHeight(float height);
 
 	public abstract MapLayers getLayers();
 

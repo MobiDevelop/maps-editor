@@ -10,13 +10,13 @@ public class BasicMapLayer implements MapLayer {
 	
 	private String name;
 	
-	private int x;
+	private float x;
 	
-	private int y;
+	private float y;
 
-	private int width;
+	private float width;
 	
-	private int height;
+	private float height;
 
 	private boolean visible;
 	
@@ -45,42 +45,42 @@ public class BasicMapLayer implements MapLayer {
 	}
 	
 	@Override
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
 	@Override
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
 	@Override
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
 	@Override
-	public int getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
 	@Override
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
 	@Override
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
 	@Override
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 	
@@ -108,11 +108,11 @@ public class BasicMapLayer implements MapLayer {
 		this(map, map.getWidth(), map.getHeight());
 	}
 	
-	public BasicMapLayer(Map map, int width, int height) {
+	public BasicMapLayer(Map map, float width, float height) {
 		this(map, 0, 0, width, height);
 	}
 
-	public BasicMapLayer(Map map, int x, int y, int width, int height) {
+	public BasicMapLayer(Map map, float x, float y, float width, float height) {
 		this.map = map;
 		this.x = x;
 		this.y = y;

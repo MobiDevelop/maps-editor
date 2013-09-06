@@ -9,13 +9,13 @@ public class BasicMap implements Map {
 
 	private String name;
 	
-	private int x;
+	private float x;
 	
-	private int y;
+	private float y;
 
-	private int width;
+	private float width;
 	
-	private int height;
+	private float height;
 
 	private MapLayers layers;
 	
@@ -34,42 +34,42 @@ public class BasicMap implements Map {
 	}
 	
 	@Override
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
 	@Override
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
 	@Override
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
 	@Override
-	public int getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
 	@Override
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
 	@Override
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
 	@Override
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 	
@@ -92,11 +92,11 @@ public class BasicMap implements Map {
 		this(0, 0);
 	}
 	
-	public BasicMap(int width, int height) {
+	public BasicMap(float width, float height) {
 		this(0, 0, width, height);
 	}
 
-	public BasicMap(int x, int y, int width, int height) {
+	public BasicMap(float x, float y, float width, float height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -104,6 +104,11 @@ public class BasicMap implements Map {
 		this.layers = new MapLayers();
 		this.properties = new MapProperties();
 		this.resources = new MapResources();
+	}
+
+	@Override
+	public void dispose() {
+		resources.dispose();
 	}
 	
 }

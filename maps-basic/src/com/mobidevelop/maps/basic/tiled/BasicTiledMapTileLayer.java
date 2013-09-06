@@ -12,13 +12,13 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	
 	private String name;
 	
-	private int x;
+	private float x;
 	
-	private int y;
+	private float y;
 
-	private int width;
+	private float width;
 	
-	private int height;
+	private float height;
 
 	private boolean visible;
 	
@@ -57,42 +57,42 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	}
 	
 	@Override
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
 	@Override
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
 	@Override
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
 	@Override
-	public int getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
 	@Override
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		throw new UnsupportedOperationException("Cannot directly set the width.");
 	}
 
 	@Override
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
 	@Override
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		throw new UnsupportedOperationException("Cannot directly set the height.");
 	}
 	
@@ -158,13 +158,12 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	
 	@Override
 	public TiledMapTile getTile(int x, int y) {
-		
-		return null;
+		return cells[y][x].tile;
 	}
 
 	@Override
 	public void setTile(int x, int y, TiledMapTile tile) {
-		
+		cells[y][x].tile = tile;
 	}
 
 	@Override
@@ -245,7 +244,7 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 		this(map, 0, 0, tileWidth, tileHeight, widthInTiles, heightInTiles);
 	}
 	
-	public BasicTiledMapTileLayer(Map map, int x, int y, int tileWidth, int tileHeight, int widthInTiles, int heightInTiles) {
+	public BasicTiledMapTileLayer(Map map, float x, float y, int tileWidth, int tileHeight, int widthInTiles, int heightInTiles) {
 		this.map = map;
 		this.x = x;
 		this.y = y;		
