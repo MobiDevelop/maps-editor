@@ -16,25 +16,30 @@
 
 package com.mobidevelop.maps.editor.commands;
 
+import com.badlogic.gdx.files.FileHandle;
 import com.mobidevelop.maps.MapLayer;
 import com.mobidevelop.maps.MapObject;
 import com.mobidevelop.maps.MapObjects;
+import com.mobidevelop.maps.editor.models.MapModels.MapObjectsModel.ObjectAddedEvent;
+import com.mobidevelop.maps.editor.models.MapModels.MapObjectsModel.ObjectRemovedEvent;
+import com.mobidevelop.maps.editor.models.MapModels.MapObjectsModel.ObjectSwappedEvent;
 import com.mobidevelop.utils.commands.Command;
+import com.mobidevelop.utils.events.Event;
 
 public final class MapObjectsCommands {
 	
 	private MapObjectsCommands() { }
 	
-	public static AddObjectCommand add(MapLayer layer, MapObject object) {
-		return new AddObjectCommand(layer, object);
+	public static AddObjectCommand add(MapLayer layer, MapObject object, FileHandle file) {
+		return new AddObjectCommand(layer, object, file);
 	}
 	
 	public static InsertObjectCommand insert(MapLayer layer, int index, MapObject object) {
 		return new InsertObjectCommand(layer, index, object);
 	}
 	
-	public static RemoveObjectCommand remove(MapLayer layer, MapObject object) {
-		return new RemoveObjectCommand(layer, object);
+	public static RemoveObjectCommand remove(MapLayer layer, MapObject object, FileHandle file) {
+		return new RemoveObjectCommand(layer, object, file);
 	}
 	
 	public static SwapObjectsCommand swap(MapLayer layer, MapObject object1, MapObject object2) {
@@ -45,20 +50,24 @@ public final class MapObjectsCommands {
 
 		private MapLayer layer;
 		private MapObject object;
+		private FileHandle file;
 		
-		public AddObjectCommand(MapLayer layer, MapObject object) {
+		public AddObjectCommand(MapLayer layer, MapObject object, FileHandle file) {
 			this.layer = layer;
 			this.object = object;
+			this.file = file;
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.getObjects().addObject(object);
+			return new ObjectAddedEvent( layer, object, file );
 		}
 		
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.getObjects().removeObject(object);
+			return new ObjectRemovedEvent( layer, object );
 		}
 		
 	}
@@ -77,13 +86,15 @@ public final class MapObjectsCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.getObjects().addObject(index, object);
+			return null;
 		}
 		
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.getObjects().removeObject(object);
+			return null;
 		}
 		
 	}
@@ -91,26 +102,29 @@ public final class MapObjectsCommands {
 	public static class RemoveObjectCommand implements Command {
 		
 		private MapLayer layer;
-		
 		private MapObject object;
+		private FileHandle file;
 		
 		private int index;
 		
-		public RemoveObjectCommand(MapLayer layer, MapObject object) {
+		public RemoveObjectCommand(MapLayer layer, MapObject object, FileHandle file ) {
 			this.layer = layer;
 			this.object = object;
+			this.file = file;
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			MapObjects objects = layer.getObjects();
 			index = objects.getIndex(object);
 			objects.removeObject(index);
+			return new ObjectRemovedEvent( layer, object );
 		}
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			MapObjects objects = layer.getObjects();
 			objects.addObject(index, object);		
+			return new ObjectAddedEvent( layer, object, file );
 		}
 		
 	}
@@ -135,14 +149,16 @@ public final class MapObjectsCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.getObjects().swapObjects(object1, object2);
+			return new ObjectSwappedEvent( object1, object2 );
 		}
 		
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.getObjects().swapObjects(object1, object2);
+			return new ObjectSwappedEvent( object1, object2 );
 		}
-		
+	
 	}
 }

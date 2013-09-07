@@ -1,6 +1,7 @@
 package com.mobidevelop.maps.basic;
 
 import com.mobidevelop.maps.Map;
+import com.mobidevelop.maps.MapLayer;
 import com.mobidevelop.maps.MapLayers;
 import com.mobidevelop.maps.MapProperties;
 import com.mobidevelop.maps.MapResources;
@@ -110,5 +111,12 @@ public class BasicMap implements Map {
 	public void dispose() {
 		resources.dispose();
 	}
-	
+
+	@Override
+	public MapLayer createLayer( String name ) {
+
+		BasicMapLayer layer = new BasicMapLayer( this );
+		layer.setName( name );
+		return layer;
+	}
 }

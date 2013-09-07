@@ -19,14 +19,18 @@ package com.mobidevelop.maps.editor.commands;
 import com.mobidevelop.maps.Map;
 import com.mobidevelop.maps.MapLayer;
 import com.mobidevelop.maps.MapLayers;
+import com.mobidevelop.maps.editor.models.MapModels.MapLayersModel.LayerAddedEvent;
+import com.mobidevelop.maps.editor.models.MapModels.MapLayersModel.LayerRemovedEvent;
+import com.mobidevelop.maps.editor.models.MapModels.MapLayersModel.LayerSwappedEvent;
 import com.mobidevelop.utils.commands.Command;
+import com.mobidevelop.utils.events.Event;
 
 final public class MapLayersCommands {
 
 	private MapLayersCommands() { }
 	
-	public static AddLayerCommand add(Map map, MapLayer layer) {
-		return new AddLayerCommand(map, layer);
+	public static AddLayerCommand add(Map map, String layerName) {
+		return new AddLayerCommand(map, layerName);
 	}
 	
 	public static InsertLayerCommand insert(Map map, int index, MapLayer layer) {
@@ -43,23 +47,26 @@ final public class MapLayersCommands {
 	
 	public static class AddLayerCommand implements Command {
 		private Map map;
+		private String layerName;
 		private MapLayer layer;
 		
-		public AddLayerCommand(Map map, MapLayer layer) {
+		public AddLayerCommand(Map map, String name) {
 			this.map = map;
-			this.layer = layer;
+			this.layerName = name;
 		}
 		
 		@Override
-		public void execute() {
-			map.getLayers().addLayer(layer);
+		public Event execute() {
+			layer = map.createLayer( layerName );
+			map.getLayers().addLayer( layer );
+			return new LayerAddedEvent( layer );
 		}
 		
 		@Override
-		public void reverse() {
-			map.getLayers().removeLayer(layer);
+		public Event reverse() {
+			map.getLayers().removeLayer( layer );
+			return new LayerRemovedEvent( layer );
 		}
-		
 	}
 	
 	public static class InsertLayerCommand implements Command {
@@ -76,13 +83,15 @@ final public class MapLayersCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			map.getLayers().addLayer(index, layer);
+			return null;
 		}
 		
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			map.getLayers().removeLayer(layer);
+			return null;
 		}
 		
 	}
@@ -98,17 +107,20 @@ final public class MapLayersCommands {
 			this.map = map;
 			this.layer = layer;
 		}
-		
+
 		@Override
-		public void execute() {
+		public Event execute() {
 			MapLayers layers = map.getLayers();
-			index = layers.getIndex(layer);
-			layers.removeLayer(index);
+			index = layers.getIndex( layer );
+			layers.removeLayer( layer );
+			return new LayerRemovedEvent( layer );
 		}
+
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			MapLayers layers = map.getLayers();
-			layers.addLayer(index, layer);		
+			layers.addLayer( index, layer );
+			return new LayerAddedEvent( layer );
 		}
 		
 	}
@@ -130,15 +142,17 @@ final public class MapLayersCommands {
 			this.layer1 = layer1;
 			this.layer2 = layer2;
 		}
-		
+
 		@Override
-		public void execute() {
-			map.getLayers().swapLayers(layer1, layer2);
+		public Event execute() {
+			map.getLayers().swapLayers( layer1, layer2 );
+			return new LayerSwappedEvent( layer1, layer2 );
 		}
 		
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			map.getLayers().swapLayers(layer1, layer2);
+			return new LayerSwappedEvent( layer1, layer2 );
 		}
 		
 	}
