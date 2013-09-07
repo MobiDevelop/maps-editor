@@ -16,6 +16,8 @@
 
 package com.mobidevelop.utils.commands;
 
+import com.mobidevelop.utils.events.Event;
+
 /**
  * Represents an action that can be executed and reversed.
  * 
@@ -23,8 +25,8 @@ package com.mobidevelop.utils.commands;
  */
 public interface Command {
 	
-	public void execute();
+	public Event execute();
 	
-	public void reverse();
+	public Event reverse();
 	
 }

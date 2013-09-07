@@ -46,4 +46,5 @@ public interface Map extends Disposable {
 
 	public abstract MapResources getResources();
 
+	public abstract MapLayer createLayer( String name );
 }

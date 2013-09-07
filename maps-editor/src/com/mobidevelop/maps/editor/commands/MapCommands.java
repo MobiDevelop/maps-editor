@@ -18,6 +18,7 @@ package com.mobidevelop.maps.editor.commands;
 
 import com.mobidevelop.maps.Map;
 import com.mobidevelop.utils.commands.Command;
+import com.mobidevelop.utils.events.Event;
 
 public class MapCommands {
 
@@ -50,15 +51,17 @@ public class MapCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			map.setX(newX);
-			map.setY(newY);			
+			map.setY(newY);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			map.setX(oldX);
 			map.setY(oldY);
+			return null;
 		}
 		
 	}
@@ -80,15 +83,17 @@ public class MapCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			map.setWidth(newWidth);
-			map.setHeight(newHeight);			
+			map.setHeight(newHeight);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			map.setWidth(oldWidth);
 			map.setHeight(oldHeight);
+			return null;
 		}
 		
 	}
@@ -106,13 +111,15 @@ public class MapCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			map.setName(newName);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			map.setName(oldName);
+			return null;
 		}
 		
 	}	

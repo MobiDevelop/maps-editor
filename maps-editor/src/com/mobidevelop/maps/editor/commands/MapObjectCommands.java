@@ -18,6 +18,7 @@ package com.mobidevelop.maps.editor.commands;
 
 import com.mobidevelop.maps.MapObject;
 import com.mobidevelop.utils.commands.Command;
+import com.mobidevelop.utils.events.Event;
 
 public final class MapObjectCommands {
 	
@@ -27,11 +28,11 @@ public final class MapObjectCommands {
 		return new HideObjectCommand(object);
 	}	
 	
-	public static MoveObjectCommand move(MapObject object, int newX, int newY) {
+	public static MoveObjectCommand move(MapObject object, float newX, float newY) {
 		return new MoveObjectCommand(object, newX, newY);
 	}
 	
-	public static ResizeObjectCommand resize(MapObject object, int newWidth, int newHeight) {
+	public static ResizeObjectCommand resize(MapObject object, float newWidth, float newHeight) {
 		return new ResizeObjectCommand(object, newWidth, newHeight);
 	}
 	
@@ -52,13 +53,15 @@ public final class MapObjectCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			object.setVisible(false);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			object.setVisible(true);
+			return null;
 		}
 		
 	}
@@ -71,7 +74,7 @@ public final class MapObjectCommands {
 		private float newX;
 		private float newY;
 		
-		public MoveObjectCommand(MapObject object, int newX, int newY) {
+		public MoveObjectCommand(MapObject object, float newX, float newY) {
 			this.object = object;
 			this.oldX = object.getX();
 			this.oldY = object.getY();
@@ -80,15 +83,17 @@ public final class MapObjectCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			object.setX(newX);
-			object.setY(newY);			
+			object.setY(newY);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			object.setX(oldX);
 			object.setY(oldY);
+			return null;
 		}
 		
 	}
@@ -101,7 +106,7 @@ public final class MapObjectCommands {
 		private float newWidth;
 		private float newHeight;
 		
-		public ResizeObjectCommand(MapObject object, int newWidth, int newHeight) {
+		public ResizeObjectCommand(MapObject object, float newWidth, float newHeight) {
 			this.object = object;
 			this.oldWidth = object.getWidth();
 			this.oldHeight = object.getHeight();
@@ -110,15 +115,17 @@ public final class MapObjectCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			object.setWidth(newWidth);
 			object.setHeight(newHeight);			
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			object.setWidth(oldWidth);
 			object.setHeight(oldHeight);
+			return null;
 		}
 		
 	}
@@ -136,13 +143,15 @@ public final class MapObjectCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			object.setName(newName);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			object.setName(oldName);
+			return null;
 		}
 		
 	}
@@ -156,13 +165,15 @@ public final class MapObjectCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			object.setVisible(true);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			object.setVisible(false);
+			return null;
 		}
 		
 	}

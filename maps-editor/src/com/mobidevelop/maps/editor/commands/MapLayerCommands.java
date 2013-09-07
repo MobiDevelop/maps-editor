@@ -17,7 +17,10 @@
 package com.mobidevelop.maps.editor.commands;
 
 import com.mobidevelop.maps.MapLayer;
+import com.mobidevelop.maps.editor.models.MapModels.MapLayersModel.LayerHiddenEvent;
+import com.mobidevelop.maps.editor.models.MapModels.MapLayersModel.LayerShownEvent;
 import com.mobidevelop.utils.commands.Command;
+import com.mobidevelop.utils.events.Event;
 
 public final class MapLayerCommands {
 	
@@ -25,6 +28,10 @@ public final class MapLayerCommands {
 
 	public static HideLayerCommand hide(MapLayer layer) {
 		return new HideLayerCommand(layer);
+	}	
+	
+	public static ShowLayerCommand show(MapLayer layer) {
+		return new ShowLayerCommand(layer);
 	}	
 	
 	public static MoveLayerCommand move(MapLayer layer, int newX, int newY) {
@@ -39,10 +46,6 @@ public final class MapLayerCommands {
 		return new RenameLayerCommand(layer, newName);
 	}
 	
-	public static ShowLayerCommand show(MapLayer layer) {
-		return new ShowLayerCommand(layer);
-	}	
-	
 	public static class HideLayerCommand implements Command {
 
 		private MapLayer layer;
@@ -52,17 +55,39 @@ public final class MapLayerCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.setVisible(false);
+			return new LayerHiddenEvent( layer );
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.setVisible(true);
+			return new LayerShownEvent( layer );
+		}
+	}
+
+	public static class ShowLayerCommand implements Command {
+
+		private MapLayer layer;
+		
+		public ShowLayerCommand(MapLayer layer) {
+			this.layer = layer;
 		}
 		
+		@Override
+		public Event execute() {
+			layer.setVisible(true);
+			return new LayerShownEvent( layer );
+		}
+
+		@Override
+		public Event reverse() {
+			layer.setVisible(false);
+			return new LayerHiddenEvent( layer );
+		}
 	}
-	
+
 	public static class MoveLayerCommand implements Command {
 
 		private MapLayer layer;
@@ -80,15 +105,17 @@ public final class MapLayerCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.setX(newX);
-			layer.setY(newY);			
+			layer.setY(newY);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.setX(oldX);
 			layer.setY(oldY);
+			return null;
 		}
 		
 	}
@@ -110,15 +137,17 @@ public final class MapLayerCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.setWidth(newWidth);
-			layer.setHeight(newHeight);			
+			layer.setHeight(newHeight);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.setWidth(oldWidth);
 			layer.setHeight(oldHeight);
+			return null;
 		}
 		
 	}
@@ -136,35 +165,16 @@ public final class MapLayerCommands {
 		}
 		
 		@Override
-		public void execute() {
+		public Event execute() {
 			layer.setName(newName);
+			return null;
 		}
 
 		@Override
-		public void reverse() {
+		public Event reverse() {
 			layer.setName(oldName);
+			return null;
 		}
 		
 	}
-
-	public static class ShowLayerCommand implements Command {
-
-		private MapLayer layer;
-		
-		public ShowLayerCommand(MapLayer layer) {
-			this.layer = layer;
-		}
-		
-		@Override
-		public void execute() {
-			layer.setVisible(true);
-		}
-
-		@Override
-		public void reverse() {
-			layer.setVisible(false);
-		}
-		
-	}
-	
 }

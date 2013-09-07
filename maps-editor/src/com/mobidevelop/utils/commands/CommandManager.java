@@ -18,6 +18,9 @@ package com.mobidevelop.utils.commands;
 
 import java.util.*;
 
+import com.mobidevelop.maps.editor.models.MapModels.MapModel;
+import com.mobidevelop.utils.events.Event;
+
 
 /**
  * The {@code CommandManager} class manages the execution and reversal of {@link Command Commands}.
@@ -28,8 +31,11 @@ public class CommandManager {
 	
 	private Deque<Command> undoStack;
 	private Deque<Command> redoStack;
-	
-	public CommandManager() {
+
+	private MapModel model;
+
+	public CommandManager( MapModel model ) {
+		this.model = model;
 		undoStack = new ArrayDeque<Command>();
 		redoStack = new ArrayDeque<Command>();
 	}
@@ -40,7 +46,9 @@ public class CommandManager {
 	 * @param command The {@link Command} to execute.
 	 */
 	public void execute(Command command) {
-		command.execute();
+		Event event = command.execute();
+		if ( event != null )
+			model.dispatchEvent( event );
 		undoStack.push(command);
 		redoStack.clear();
 	}
@@ -55,7 +63,9 @@ public class CommandManager {
 			throw new RuntimeException("No commands to undo.");
 		}
 		Command command = undoStack.pop();
-		command.reverse();
+		Event event = command.reverse();
+		if ( event != null )
+			model.dispatchEvent( event );
 		redoStack.push(command);		
 	}
 
@@ -70,7 +80,9 @@ public class CommandManager {
 		}
 		while (!undoStack.isEmpty() && count > 0) {
 			Command command = undoStack.pop();
-			command.reverse();
+			Event event = command.reverse();
+			if ( event != null )
+				model.dispatchEvent( event );
 			redoStack.push(command);
 			count--;
 		}		
@@ -103,7 +115,9 @@ public class CommandManager {
 			throw new RuntimeException("No commands to redo.");
 		}
 		Command command = redoStack.pop();
-		command.execute();
+		Event event = command.execute();
+		if ( event != null )
+			model.dispatchEvent( event );
 		undoStack.push(command);		
 	}
 
@@ -113,7 +127,9 @@ public class CommandManager {
 		}
 		while (!undoStack.isEmpty() && count > 0) {
 			Command command = redoStack.pop();
-			command.execute();
+			Event event = command.execute();
+			if ( event != null )
+				model.dispatchEvent( event );
 			undoStack.push(command);
 			count--;
 		}		
