@@ -16,230 +16,52 @@
 
 package com.mobidevelop.maps;
 
-import com.badlogic.gdx.utils.ObjectMap;
+public interface MapProperties {
 
-public class MapProperties {
+	public boolean containsKey(String key);
 
-	private ObjectMap<String, Object> data;
-	
-	public MapProperties() {
-		data = new ObjectMap<String, Object>();
-	}
+	public Iterable<String> getKeys();
 
-	public boolean containsKey(String key) {
-		return data.containsKey(key);
-	}
+	public Object get(String key);
+
+	public Boolean getAsBoolean(String key);
+
+	public Boolean getAsBoolean(String key, Boolean defaultValue);
+
+	public Byte getAsByte(String key);
+
+	public Byte getAsByte(String key, Byte defaultValue);
+
+	public Double getAsDouble(String key);
+
+	public Double getAsDouble(String key, Double defaultValue);
+
+	public Float getAsFloat(String key);
+
+	public Float getAsFloat(String key, Float defaultValue);
 	
-	public Iterable<String> getKeys() {
-		return data.keys();
-	}
-	
-	public Object get(String key) {
-		return data.get(key);
-	}
-	
-	public Boolean getAsBoolean(String key) {
-		Object value = data.get(key);
-		try {
-			return (Boolean) value;
-		} catch (ClassCastException e) {
-			if (value instanceof CharSequence) {
-				return Boolean.valueOf(value.toString());
-			} else {
-				return null;
-			}
-		}
-	}
-	
-	public Boolean getAsBoolean(String key, Boolean defaultValue) {
-		Boolean value = getAsBoolean(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public Byte getAsByte(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			if (value instanceof Number) {
-				return ((Number) value).byteValue();
-			} else {
-				if (value instanceof CharSequence) {
-					try {
-						return Byte.valueOf(value.toString());	
-					} catch (NumberFormatException e2) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}			
-		} else {
-			return null;			
-		}
-	}
-	
-	public Byte getAsByte(String key, Byte defaultValue) {
-		Byte value = getAsByte(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public Double getAsDouble(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			if (value instanceof Number) {
-				return ((Number) value).doubleValue();
-			} else {
-				if (value instanceof CharSequence) {
-					try {
-						return Double.valueOf(value.toString());	
-					} catch (NumberFormatException e2) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}
-		} else {
-			return null;			
-		}
-	}
-	
-	public Double getAsDouble(String key, Double defaultValue) {
-		Double value = getAsDouble(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public Float getAsFloat(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			if (value instanceof Number) {
-				return ((Number) value).floatValue();
-			} else {
-				if (value instanceof CharSequence) {
-					try {
-						return Float.valueOf(value.toString());	
-					} catch (NumberFormatException e2) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}
-		} else {
-			return null;			
-		}
-	}
-	
-	public Float getAsFloat(String key, Float defaultValue) {
-		Float value = getAsFloat(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public Integer getAsInteger(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			if (value instanceof Number) {
-				return ((Number) value).intValue();
-			} else {
-				if (value instanceof CharSequence) {
-					try {
-						return Integer.valueOf(value.toString());	
-					} catch (NumberFormatException e2) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}
-		} else {
-			return null;			
-		}
-	}
-	
-	public Integer getAsInteger(String key, Integer defaultValue) {
-		Integer value = getAsInteger(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public Long getAsLong(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			if (value instanceof Number) {
-				return ((Number) value).longValue();
-			} else {
-				if (value instanceof CharSequence) {
-					try {
-						return Long.valueOf(value.toString());	
-					} catch (NumberFormatException e2) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}
-		} else {
-			return null;			
-		}
-	}
-	
-	public Long getAsLong(String key, Long defaultValue) {
-		Long value = getAsLong(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public Short getAsShort(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			if (value instanceof Number) {
-				return ((Number) value).shortValue();
-			} else {
-				if (value instanceof CharSequence) {
-					try {
-						return Short.valueOf(value.toString());	
-					} catch (NumberFormatException e2) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}
-		} else {
-			return null;			
-		}
-	}
-	
-	public Short getAsShort(String key, Short defaultValue) {
-		Short value = getAsShort(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public String getAsString(String key) {
-		Object value = data.get(key);
-		if (value != null) {
-			return value.toString();
-		} else {
-			return null;			
-		}
-	}
-	
-	public String getAsString(String key, String defaultValue) {
-		String value = getAsString(key);
-		return value == null? defaultValue : value;
-	}
-	
-	public void put(String key, Object value) {
-		data.put(key, value);
-	}
-	
-	public void putAll(MapProperties properties) {
-		data.putAll(properties.data);
-	}
-	
-	public void remove(String key) {
-		data.remove(key);
-	}
-	
-	public void clear() {
-		data.clear();
-	}
+	public Integer getAsInteger(String key);
+
+	public Integer getAsInteger(String key, Integer defaultValue);
+
+	public Long getAsLong(String key);
+
+	public Long getAsLong(String key, Long defaultValue);
+
+	public Short getAsShort(String key);
+
+	public Short getAsShort(String key, Short defaultValue);
+
+	public String getAsString(String key);
+
+	public String getAsString(String key, String defaultValue);
+
+	public void put(String key, Object value);
+
+	public void putAll(MapProperties properties);
+
+	public void remove(String key);
+
+	public void clear();
 	
 }

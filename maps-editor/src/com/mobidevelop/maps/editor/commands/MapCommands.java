@@ -21,16 +21,16 @@ import com.mobidevelop.utils.commands.Command;
 
 public class MapCommands {
 
-	public static MoveMapCommand move(Map layer, int newX, int newY) {
-		return new MoveMapCommand(layer, newX, newY);
+	public static MoveMapCommand move(Map map, int newX, int newY) {
+		return new MoveMapCommand(map, newX, newY);
 	}
 	
-	public static ResizeMapCommand resize(Map layer, int newWidth, int newHeight) {
-		return new ResizeMapCommand(layer, newWidth, newHeight);
+	public static ResizeMapCommand resize(Map map, int newWidth, int newHeight) {
+		return new ResizeMapCommand(map, newWidth, newHeight);
 	}
 	
-	public static RenameMapCommand rename(Map layer, String newName) {
-		return new RenameMapCommand(layer, newName);
+	public static RenameMapCommand rename(Map map, String newName) {
+		return new RenameMapCommand(map, newName);
 	}
 
 	public static class MoveMapCommand implements Command {

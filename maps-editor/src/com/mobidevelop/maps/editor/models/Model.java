@@ -14,22 +14,11 @@
  * limitations under the License.
  ******************************************************************************/
 
-package com.mobidevelop.maps;
+package com.mobidevelop.maps.editor.models;
 
-import com.badlogic.gdx.utils.Disposable;
+import com.mobidevelop.utils.events.EventDispatcher;
+import com.mobidevelop.utils.events.EventListener;
 
-public interface MapResources extends Disposable {
-	
-	public <T> T get(Class<T> type);
-	
-	public <T> T get(String name, Class<T> type);
-	
-	public void put(String key, Object value);
-	
-	public void put(String name, Object value, Class<?> type);
-	
-	public <T> void remove(String name, Class<T> type);
-	
-	public void dispose();
+public interface Model extends EventDispatcher, EventListener {
 	
 }

@@ -16,82 +16,41 @@
 
 package com.mobidevelop.maps;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
 
-public class MapLayers implements Iterable<MapLayer> {
+public interface MapLayers extends Iterable<MapLayer> {
+
+	public int getCount();
+
+	public int getIndex(MapLayer layer);
 	
-	private Array<MapLayer> data;
+	public MapLayer getLayer(int index);
 	
-	public MapLayers() {
-		data = new Array<MapLayer>();
-	}
-
-	public int getCount() {
-		return data.size;
-	}
-
-	public int getIndex(MapLayer layer) {
-		return data.indexOf(layer, true);
-	}
+	public MapLayer getLayer(String name);
 	
-	public MapLayer getLayer(int index) {
-		return data.get(index);
-	}
+	public void addLayer(MapLayer layer);
+
+	public void addLayer(int index, MapLayer layer);
+
+	public void removeLayer(int index);
 	
-	public MapLayer getLayer(String name) {
-		for (int i = 0, j = data.size; i < j; i++) {
-			MapLayer layer = data.get(i);
-			if (name.equals(layer.getName())) {
-				return layer;
-			}
-		}
-		return null;
-	}
-	
-	public void addLayer(MapLayer layer) {
-		data.add(layer);
-	}
+	public void removeLayer(MapLayer layer);
 
-	public void addLayer(int index, MapLayer layer) {
-		data.insert(index, layer);
-	}
+	public void sortLayers();
 
-	public void removeLayer(int index) {
-		data.removeIndex(index);
-	}
-	
-	public void removeLayer(MapLayer layer) {
-		data.removeValue(layer, true);
-	}
+	public void sortLayers(Comparator<MapLayer> comparator);
 
-	public void swapLayers(int index1, int index2) {
-		MapLayer layer1 = data.get(index1);
-		MapLayer layer2 = data.get(index2);
-		data.set(index1, layer2);
-		data.set(index2, layer1);
-	}
-	
-	public void swapLayers(MapLayer layer1, MapLayer layer2) {
-		int index1 = data.indexOf(layer1, true);
-		int index2 = data.indexOf(layer2, true);
-		data.set(index1, layer2);
-		data.set(index2, layer1);
-	}
+	public void swapLayers(int index1, int index2);
 
-	public void clearLayers() {
-		data.clear();
-	}
+	public void swapLayers(MapLayer layer1, MapLayer layer2);
 
-	public Iterable<MapLayer> selectLayers(Predicate<MapLayer> predicate) {
-		return data.select(predicate);		
-	}
+	public void clearLayers();
 
-	@Override
-	public Iterator<MapLayer> iterator() {
-		return data.iterator();
-	}
+	public Iterable<MapLayer> selectLayers(Predicate<MapLayer> predicate);
+
+	public Iterator<MapLayer> iterator();
 	
 }

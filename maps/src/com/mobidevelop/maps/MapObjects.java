@@ -19,87 +19,38 @@ package com.mobidevelop.maps;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
 
-public class MapObjects implements Iterable<MapObject> {
-	
-	private Array<MapObject> data;
-	
-	public MapObjects() {
-		data = new Array<MapObject>();
-	}
+public interface MapObjects extends Iterable<MapObject> {
 
-	public int getCount() {
-		return data.size;
-	}
-	
-	public int getIndex(MapObject object) {
-		return data.indexOf(object, true);
-	}
-	
-	public MapObject getObject(int index) {
-		return data.get(index);
-	}
-	
-	public MapObject getObject(String name) {
-		for (int i = 0, j = data.size; i < j; i++) {
-			MapObject object = data.get(i);
-			if (name.equals(object.getName())) {
-				return object;
-			}
-		}
-		return null;
-	}
-	public void addObject(MapObject object) {
-		data.add(object);
-	}
+	public int getCount();
 
-	public void addObject(int index, MapObject object) {
-		data.insert(index, object);
-	}
+	public int getIndex(MapObject object);
+	
+	public MapObject getObject(int index);
+	
+	public MapObject getObject(String name);
+	
+	public void addObject(MapObject object);
 
-	public void removeObject(int index) {
-		data.removeIndex(index);
-	}
-	
-	public void removeObject(MapObject object) {
-		data.removeValue(object, true);
-	}
+	public void addObject(int index, MapObject object);
 
-	public void swapObjects(int index1, int index2) {
-		MapObject object1 = data.get(index1);
-		MapObject object2 = data.get(index2);
-		data.set(index1, object2);
-		data.set(index2, object1);
-	}
+	public void removeObject(int index);
 	
-	public void swapObjects(MapObject object1, MapObject object2) {
-		int index1 = data.indexOf(object1, true);
-		int index2 = data.indexOf(object2, true);
-		data.set(index1, object2);
-		data.set(index2, object1);
-	}
+	public void removeObject(MapObject object);
 
-	public void sortObjects() {
-		data.sort();
-	}
+	public void swapObjects(int index1, int index2);
 	
-	public void sortObjects(Comparator<MapObject> comparator) {
-		data.sort(comparator);
-	}
-	
-	public void clearObjects() {
-		data.clear();
-	}
+	public void swapObjects(MapObject object1, MapObject object2);
 
-	public Iterable<MapObject> selectObjects(Predicate<MapObject> predicate) {
-		return data.select(predicate);		
-	}
+	public void sortObjects();
 	
-	@Override
-	public Iterator<MapObject> iterator() {
-		return data.iterator();
-	}
+	public void sortObjects(Comparator<MapObject> comparator);
+	
+	public void clearObjects();
+
+	public Iterable<MapObject> selectObjects(Predicate<MapObject> predicate);
+
+	public Iterator<MapObject> iterator();
 	
 }

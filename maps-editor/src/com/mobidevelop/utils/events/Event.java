@@ -18,9 +18,9 @@ package com.mobidevelop.utils.events;
 
 public class Event {
 	
-	private boolean bubble;
-	private boolean stopped;
-	private boolean canceled;
+	private boolean bubble = true;
+	private boolean stopped = false;
+	private boolean canceled = false;
 
 	public boolean getBubble() {
 		return bubble;
