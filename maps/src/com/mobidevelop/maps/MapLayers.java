@@ -35,7 +35,7 @@ public interface MapLayers extends Iterable<MapLayer> {
 
 	public void addLayer(int index, MapLayer layer);
 
-	public void removeLayer(int index);
+	public MapLayer removeLayer(int index);
 	
 	public void removeLayer(MapLayer layer);
 

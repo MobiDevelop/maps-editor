@@ -94,9 +94,10 @@ public class ModelMapLayers extends BasicMapLayers implements Model {
 	}
 
 	@Override
-	public void removeLayer(int index) {
-		super.removeLayer(index);
-		this.dispatchEvent(new MapLayersChangeEvent(this));
+	public MapLayer removeLayer(int index) {
+		MapLayer layer = super.removeLayer(index);
+		this.dispatchEvent(new MapLayersChangeEvent(this, layer));
+		return layer;
 	}
 
 	@Override

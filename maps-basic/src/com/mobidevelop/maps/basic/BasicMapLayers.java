@@ -62,8 +62,8 @@ public class BasicMapLayers implements MapLayers {
 		data.insert(index, layer);
 	}
 
-	public void removeLayer(int index) {
-		data.removeIndex(index);
+	public MapLayer removeLayer(int index) {
+		return data.removeIndex(index);
 	}
 	
 	public void removeLayer(MapLayer layer) {
