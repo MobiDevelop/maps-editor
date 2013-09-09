@@ -17,11 +17,59 @@
 package com.mobidevelop.maps.editor;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.mobidevelop.maps.editor.commands.MapLayersCommands;
+import com.mobidevelop.maps.editor.controllers.ControllerMap;
+import com.mobidevelop.maps.editor.models.ModelMap;
+import com.mobidevelop.maps.editor.models.ModelMapLayer;
+import com.mobidevelop.maps.editor.models.ModelMapLayers;
+import com.mobidevelop.maps.editor.views.ViewMapLayers;
+import com.mobidevelop.utils.commands.CommandManager;
 
-public class MapEditor implements ApplicationListener {
+public class MapEditor implements ApplicationListener, ControllerMap {
+
+	private SpriteBatch batch;
+
+	private Skin skin;
+
+	private Stage uiStage;
+
+	private Stage viewStage;
+
+	private ModelMap map;
+
+	private CommandManager commands = new CommandManager();
 
 	@Override
 	public void create() {
+
+		float w = Gdx.graphics.getWidth();
+		float h = Gdx.graphics.getHeight();
+
+		batch = new SpriteBatch();
+		skin = new Skin( Gdx.files.internal( "data/uiskin.json" ) );
+
+		uiStage = new Stage(w, h, true, batch);
+		viewStage = new Stage(w, h, false, batch);
+
+		map = createMap();
+
+		ViewMapLayers layers = new ViewMapLayers("Layers", skin);
+		layers.setController(this);
+		layers.setLayers((ModelMapLayers) map.getLayers());
+		uiStage.addActor(layers);
+
+		Gdx.input.setInputProcessor(new InputMultiplexer(uiStage, viewStage));
+
+	}
+
+	@Override
+	public void dispose() {
 	}
 
 	@Override
@@ -31,17 +79,33 @@ public class MapEditor implements ApplicationListener {
 	@Override
 	public void resume() {
 	}
-	
+
+	@Override
+	public void render() {
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+		viewStage.act(Math.min(1 / 30f, Gdx.graphics.getDeltaTime()));
+		viewStage.draw();
+		uiStage.act(Math.min(1 / 30f, Gdx.graphics.getDeltaTime()));
+		uiStage.draw();
+	}
+
 	@Override
 	public void resize(int width, int height) {
 	}
 
-	@Override
-	public void render() {
+	public ModelMap createMap() {
+		ModelMap map = new ModelMap();
+		ModelMapLayer layer = new ModelMapLayer(map);
+		layer.setName("Layer 1");
+		map.getLayers().addLayer(layer);
+		return map;
 	}
 
 	@Override
-	public void dispose() {
+	public void createLayer() {
+		ModelMapLayer layer = new ModelMapLayer(map);
+		layer.setName("Layer " + map.getLayers().getCount());
+		commands.execute(MapLayersCommands.add(map, layer));
 	}
 
 }

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mobidevelop.maps.MapLayer;
+import com.mobidevelop.maps.editor.controllers.ControllerMap;
 import com.mobidevelop.maps.editor.events.MapLayerChangeEvent;
 import com.mobidevelop.maps.editor.events.MapLayersChangeEvent;
 import com.mobidevelop.maps.editor.models.ModelMapLayer;
@@ -34,6 +35,8 @@ public class ViewMapLayers extends Window implements EventListener {
 	
 	private ModelMapLayers layers;
 	
+	private ControllerMap controller;
+
 	public ViewMapLayers(String title, Skin skin) {
 		super(title, skin);
 		this.skin = skin;
@@ -63,7 +66,9 @@ public class ViewMapLayers extends Window implements EventListener {
 		add.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-
+				if (controller != null) {
+					controller.createLayer();
+				}
 			}
 		});
 		
@@ -75,7 +80,11 @@ public class ViewMapLayers extends Window implements EventListener {
 		});
 		
 	}
-	
+
+	public void setController(ControllerMap controller) {
+		this.controller = controller;
+	}
+
 	public void setLayers(ModelMapLayers layers) {
 		if (this.layers != null) {
 			this.layers.removeEventListener(this);
