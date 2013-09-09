@@ -94,9 +94,10 @@ public class ModelMapObjects extends BasicMapObjects implements Model {
 	}
 
 	@Override
-	public void removeObject(int index) {
-		super.removeObject(index);
-		this.dispatchEvent(new MapObjectsChangeEvent(this));
+	public MapObject removeObject(int index) {
+		MapObject object = super.removeObject(index);
+		this.dispatchEvent(new MapObjectsChangeEvent(this, object));
+		return object;
 	}
 
 	@Override

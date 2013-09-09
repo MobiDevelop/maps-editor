@@ -35,7 +35,7 @@ public interface MapObjects extends Iterable<MapObject> {
 
 	public void addObject(int index, MapObject object);
 
-	public void removeObject(int index);
+	public MapObject removeObject(int index);
 	
 	public void removeObject(MapObject object);
 

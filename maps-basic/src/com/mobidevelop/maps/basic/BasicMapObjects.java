@@ -61,8 +61,8 @@ public class BasicMapObjects implements MapObjects {
 		data.insert(index, object);
 	}
 
-	public void removeObject(int index) {
-		data.removeIndex(index);
+	public MapObject removeObject(int index) {
+		return data.removeIndex(index);
 	}
 	
 	public void removeObject(MapObject object) {
