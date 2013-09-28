@@ -53,7 +53,12 @@ public class BasicMapRenderer {
 	Vector2 v = new Vector2();
 	boolean spriteBatchDrawing = false;
 	
+	int objectsTotal = 0;
+	int objectsDrawn = 0;
+
 	public void render() {
+		objectsTotal = 0;
+		objectsDrawn = 0;
 		batcher.begin();
 		float mapX = map.getX();
 		float mapY = map.getY();
@@ -62,7 +67,7 @@ public class BasicMapRenderer {
 				float layerX = mapX + layer.getX();
 				float layerY = mapY + layer.getY();
 				temp.set(layerX, layerY, layer.getWidth(), layer.getHeight());
-				
+
 				/* Skip the layer if it is completely out of the view.
 				 * Because objects are not necessarily constrained to the layer bounds
 				 * this could result in objects that would otherwise have been visible
@@ -74,6 +79,7 @@ public class BasicMapRenderer {
 				 */
 				if (view.overlaps(temp) || view.contains(temp)) {
 					for (MapObject object : layer.getObjects()) {
+						objectsTotal += 1;
 						if (object.getVisible()) {
 							float objectX = layerX + object.getX();
 							float objectY = layerY + object.getY();
@@ -134,6 +140,7 @@ public class BasicMapRenderer {
 							 * 
 							 * FIXME: The following is terribly inefficient.*/
 							if (view.overlaps(temp) || view.contains(temp)) {
+								objectsDrawn += 1;
 								if (object instanceof TextureRegionMapObject) {
 									TextureRegion region = map.getResources().get(((TextureRegionMapObject) object).getTextureRegionName(), TextureRegion.class);
 									batcher.draw(region, objectX, objectY, object.getWidth() / 2f, object.getHeight() / 2f, object.getWidth(), object.getHeight(), 1, 1, object.getRotation());									
@@ -235,9 +242,6 @@ public class BasicMapRenderer {
 									maxX = Math.max(maxX, x + object.getWidth() / 2);
 									minY = Math.min(minY, y + object.getHeight() / 2);
 									maxY = Math.max(maxY, y + object.getHeight() / 2);
-									
-									vertices[i * 2 + 0] = x + object.getWidth() / 2;
-									vertices[i * 2 + 1] = y + object.getHeight() / 2;
 								}
 								temp.set(minX, minY, maxX - minX, maxY - minY);
 							}
@@ -249,7 +253,7 @@ public class BasicMapRenderer {
 									renderer.setColor(0,1,0,1);
 									renderer.rect(temp.x, temp.y, temp.width, temp.height);
 									renderer.setColor(0,0.5f,0,1);
-									renderer.polygon(vertices);
+									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight(), object.getWidth() / 2, object.getHeight() / 2, object.getRotation());
 								}
 							}
 						}
