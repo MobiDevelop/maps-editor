@@ -25,35 +25,35 @@ import com.mobidevelop.maps.tiled.TiledMapTile;
 import com.mobidevelop.maps.tiled.TiledMapTileLayer;
 
 public class BasicTiledMapTileLayer implements TiledMapTileLayer {
-	
+
 	private transient Map map;
-	
+
 	private String name;
-	
+
 	private float x;
-	
+
 	private float y;
 
 	private float width;
-	
+
 	private float height;
 
 	private boolean visible;
-	
+
 	private MapObjects objects;
-	
+
 	private MapProperties properties;
-	
+
 	private int tileWidth;
-	
+
 	private int tileHeight;
-	
+
 	private int widthInTiles;
-	
+
 	private int heightInTiles;
-	
+
 	private Cell[][] cells;
-	
+
 	@Override
 	public Map getMap() {
 		return map;
@@ -63,17 +63,17 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	public void setMap(Map map) {
 		this.map = map;
 	}
-	
+
 	@Override
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public float getX() {
 		return x;
@@ -113,22 +113,22 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	public void setHeight(float height) {
 		throw new UnsupportedOperationException("Cannot directly set the height.");
 	}
-	
+
 	@Override
 	public boolean getVisible() {
 		return visible;
 	}
-	
+
 	@Override
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
 	@Override
 	public MapObjects getObjects() {
 		return objects;
 	}
-	
+
 	@Override
 	public MapProperties getProperties() {
 		return properties;
@@ -153,7 +153,7 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	public void setTileHeight(int tileHeight) {
 		this.tileHeight = tileHeight;
 	}
-	
+
 	@Override
 	public int getWidthInTiles() {
 		return widthInTiles;
@@ -168,12 +168,12 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	public int getHeightInTiles() {
 		return heightInTiles;
 	}
-	
+
 	@Override
 	public void setHeightInTiles(int heightInTiles) {
 		throw new UnsupportedOperationException("Cannot change the size of a BasicTiledMapTileLayer.");
 	}
-	
+
 	@Override
 	public TiledMapTile getTile(int x, int y) {
 		return cells[y][x].tile;
@@ -228,7 +228,7 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 		}		
 		return 0;
 	}
-	
+
 	@Override
 	public void setRotation(int x, int y, int rotation) {
 		Cell cell = cells[y][x];
@@ -241,15 +241,15 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	public Cell getCell(int x, int y) {
 		return cells[y][x];
 	}
-	
+
 	public void setCell(int x, int y, Cell cell) {
 		cells[y][x] = cell;
 	}
-	
+
 	public Cell[][] getCells() {
 		return cells;
 	}
-	
+
 	public BasicTiledMapTileLayer(Map map) {
 		this(map, 0, 0);
 	}
@@ -257,11 +257,11 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	public BasicTiledMapTileLayer(Map map, int tileWidth, int tileHeight) {
 		this(map, tileWidth, tileHeight, 0, 0);
 	}
-	
+
 	public BasicTiledMapTileLayer(Map map, int tileWidth, int tileHeight, int widthInTiles, int heightInTiles) {
 		this(map, 0, 0, tileWidth, tileHeight, widthInTiles, heightInTiles);
 	}
-	
+
 	public BasicTiledMapTileLayer(Map map, float x, float y, int tileWidth, int tileHeight, int widthInTiles, int heightInTiles) {
 		this.map = map;
 		this.x = x;
@@ -278,7 +278,7 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 		this.height = tileHeight * heightInTiles;		
 		this.cells = new Cell[heightInTiles][widthInTiles];
 	}
-	
+
 	protected MapObjects createObjects() {
 		return new BasicMapObjects();
 	}
@@ -288,13 +288,13 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 	}
 
 	public static class Cell {
-		
+
 		private TiledMapTile tile;
-		
+
 		private boolean flipX;
-		
+
 		private boolean flipY;
-		
+
 		private int rotation;
 
 		public TiledMapTile getTile() {
@@ -328,7 +328,7 @@ public class BasicTiledMapTileLayer implements TiledMapTileLayer {
 		public void setRotation(int rotation) {
 			this.rotation = rotation;
 		}
-		
+
 	}
-	
+
 }

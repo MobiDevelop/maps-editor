@@ -22,7 +22,7 @@ import com.mobidevelop.maps.MapProperties;
 public class BasicMapProperties implements MapProperties {
 
 	private ObjectMap<String, Object> data;
-	
+
 	public BasicMapProperties() {
 		data = new ObjectMap<String, Object>();
 	}
@@ -30,15 +30,15 @@ public class BasicMapProperties implements MapProperties {
 	public boolean containsKey(String key) {
 		return data.containsKey(key);
 	}
-	
+
 	public Iterable<String> getKeys() {
 		return data.keys();
 	}
-	
+
 	public Object get(String key) {
 		return data.get(key);
 	}
-	
+
 	public Boolean getAsBoolean(String key) {
 		Object value = data.get(key);
 		try {
@@ -51,12 +51,12 @@ public class BasicMapProperties implements MapProperties {
 			}
 		}
 	}
-	
+
 	public Boolean getAsBoolean(String key, Boolean defaultValue) {
 		Boolean value = getAsBoolean(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public Byte getAsByte(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -77,12 +77,12 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public Byte getAsByte(String key, Byte defaultValue) {
 		Byte value = getAsByte(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public Double getAsDouble(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -103,12 +103,12 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public Double getAsDouble(String key, Double defaultValue) {
 		Double value = getAsDouble(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public Float getAsFloat(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -129,12 +129,12 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public Float getAsFloat(String key, Float defaultValue) {
 		Float value = getAsFloat(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public Integer getAsInteger(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -155,12 +155,12 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public Integer getAsInteger(String key, Integer defaultValue) {
 		Integer value = getAsInteger(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public Long getAsLong(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -181,12 +181,12 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public Long getAsLong(String key, Long defaultValue) {
 		Long value = getAsLong(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public Short getAsShort(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -207,12 +207,12 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public Short getAsShort(String key, Short defaultValue) {
 		Short value = getAsShort(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public String getAsString(String key) {
 		Object value = data.get(key);
 		if (value != null) {
@@ -221,28 +221,28 @@ public class BasicMapProperties implements MapProperties {
 			return null;			
 		}
 	}
-	
+
 	public String getAsString(String key, String defaultValue) {
 		String value = getAsString(key);
 		return value == null? defaultValue : value;
 	}
-	
+
 	public void put(String key, Object value) {
 		data.put(key, value);
 	}
-	
+
 	public void putAll(MapProperties properties) {
 		for (String key : properties.getKeys()) {
 			data.put(key, properties.get(key));
 		}
 	}
-	
+
 	public void remove(String key) {
 		data.remove(key);
 	}
-	
+
 	public void clear() {
 		data.clear();
 	}
-	
+
 }

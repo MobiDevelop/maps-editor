@@ -20,14 +20,14 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.mobidevelop.maps.MapResources;
 
-public class BasicMapResources implements MapResources {
-	
+public class BasicMapResources implements MapResources, Disposable {
+
 	private ObjectMap<Class<?>, ObjectMap<String, Object>> data;
-	
+
 	public BasicMapResources() {
 		data = new ObjectMap<Class<?>, ObjectMap<String, Object>>();
 	}
-	
+
 	public <T> T get(Class<T> type) {
 		ObjectMap<String, Object> typeResources = data.get(type);
 		if (typeResources != null) {
@@ -35,7 +35,7 @@ public class BasicMapResources implements MapResources {
 		}
 		return null;
 	}
-	
+
 	public <T> T get(String name, Class<T> type) {
 		ObjectMap<String, Object> typeResources = data.get(type);
 		if (typeResources != null) {
@@ -43,11 +43,11 @@ public class BasicMapResources implements MapResources {
 		}
 		return null;
 	}
-	
+
 	public void put(String key, Object value) {
 		put(key, value, value.getClass());
 	}
-	
+
 	public void put(String name, Object value, Class<?> type) {
 		ObjectMap<String, Object> typeResources = data.get(type);
 		if (typeResources == null) {
@@ -67,7 +67,7 @@ public class BasicMapResources implements MapResources {
 			}
 		}		
 	}
-	
+
 	@Override
 	public void dispose() {
 		for (ObjectMap<String, Object> entry : data.values()) {
@@ -76,5 +76,5 @@ public class BasicMapResources implements MapResources {
 			}
 		}
 	}
-	
+
 }

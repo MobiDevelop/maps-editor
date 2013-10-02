@@ -24,23 +24,23 @@ import com.mobidevelop.maps.MapProperties;
 public class BasicMapLayer implements MapLayer {
 
 	private transient Map map;
-	
+
 	private String name;
-	
+
 	private float x;
-	
+
 	private float y;
 
 	private float width;
-	
+
 	private float height;
 
 	private boolean visible;
-	
+
 	private MapObjects objects;
-	
+
 	private MapProperties properties;
-	
+
 	@Override
 	public Map getMap() {
 		return map;
@@ -50,17 +50,17 @@ public class BasicMapLayer implements MapLayer {
 	public void setMap(Map map) {
 		this.map = map;
 	}
-	
+
 	@Override
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public float getX() {
 		return x;
@@ -100,31 +100,31 @@ public class BasicMapLayer implements MapLayer {
 	public void setHeight(float height) {
 		this.height = height;
 	}
-	
+
 	@Override
 	public boolean getVisible() {
 		return visible;
 	}
-	
+
 	@Override
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
 	@Override
 	public MapObjects getObjects() {
 		return objects;
 	}
-	
+
 	@Override
 	public MapProperties getProperties() {
 		return properties;
 	}
-	
+
 	public BasicMapLayer(Map map) {
 		this(map, map.getWidth(), map.getHeight());
 	}
-	
+
 	public BasicMapLayer(Map map, float width, float height) {
 		this(map, 0, 0, width, height);
 	}
@@ -139,7 +139,7 @@ public class BasicMapLayer implements MapLayer {
 		this.objects = createObjects();
 		this.properties = createProperties();
 	}
-	
+
 	protected MapObjects createObjects() {
 		return new BasicMapObjects();
 	}

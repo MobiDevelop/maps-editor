@@ -28,7 +28,7 @@ public class BasicPolygonMapObject extends BasicMapObject implements PolygonMapO
 	public float[] getVertices() {
 		return polygon.getVertices();		
 	}
-	
+
 	public void setVertices(float[] vertices) {
 		polygon.setVertices(vertices);
 	}
@@ -47,10 +47,10 @@ public class BasicPolygonMapObject extends BasicMapObject implements PolygonMapO
 		super(layer, x, y);
 		this.polygon = new Polygon();
 	}
-	
+
 	public BasicPolygonMapObject(MapLayer layer, float x, float y, float width, float height) {
 		super(layer, x, y, width, height);
 		this.polygon = new Polygon();
 	}
-	
+
 }

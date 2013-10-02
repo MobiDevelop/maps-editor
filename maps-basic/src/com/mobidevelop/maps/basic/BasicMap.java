@@ -16,39 +16,40 @@
 
 package com.mobidevelop.maps.basic;
 
+import com.badlogic.gdx.utils.Disposable;
 import com.mobidevelop.maps.Map;
 import com.mobidevelop.maps.MapLayers;
 import com.mobidevelop.maps.MapProperties;
 import com.mobidevelop.maps.MapResources;
 
-public class BasicMap implements Map {
+public class BasicMap implements Map, Disposable {
 
 	private String name;
-	
+
 	private float x;
-	
+
 	private float y;
 
 	private float width;
-	
+
 	private float height;
 
 	private MapLayers layers;
-	
+
 	private MapProperties properties;
-	
+
 	private MapResources resources;
-	
+
 	@Override
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public float getX() {
 		return x;
@@ -88,26 +89,26 @@ public class BasicMap implements Map {
 	public void setHeight(float height) {
 		this.height = height;
 	}
-	
+
 	@Override
 	public MapLayers getLayers() {
 		return layers;		
 	}
-	
+
 	@Override
 	public MapProperties getProperties() {
 		return properties;
 	}
-	
+
 	@Override
 	public MapResources getResources() {
 		return resources;
 	}
-	
+
 	public BasicMap() {
 		this(0, 0);
 	}
-	
+
 	public BasicMap(float width, float height) {
 		this(0, 0, width, height);
 	}
@@ -138,5 +139,5 @@ public class BasicMap implements Map {
 	public void dispose() {
 		resources.dispose();
 	}
-	
+
 }

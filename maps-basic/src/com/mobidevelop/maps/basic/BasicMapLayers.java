@@ -25,25 +25,29 @@ import com.mobidevelop.maps.MapLayer;
 import com.mobidevelop.maps.MapLayers;
 
 public class BasicMapLayers implements MapLayers {
-	
+
 	private Array<MapLayer> data;
-	
+
 	public BasicMapLayers() {
 		data = new Array<MapLayer>();
 	}
 
+	@Override
 	public int getCount() {
 		return data.size;
 	}
 
+	@Override
 	public int getIndex(MapLayer layer) {
 		return data.indexOf(layer, true);
 	}
-	
+
+	@Override
 	public MapLayer getLayer(int index) {
 		return data.get(index);
 	}
-	
+
+	@Override
 	public MapLayer getLayer(String name) {
 		for (int i = 0, j = data.size; i < j; i++) {
 			MapLayer layer = data.get(i);
@@ -53,19 +57,23 @@ public class BasicMapLayers implements MapLayers {
 		}
 		return null;
 	}
-	
+
+	@Override
 	public void addLayer(MapLayer layer) {
 		data.add(layer);
 	}
 
+	@Override
 	public void addLayer(int index, MapLayer layer) {
 		data.insert(index, layer);
 	}
 
+	@Override
 	public MapLayer removeLayer(int index) {
 		return data.removeIndex(index);
 	}
-	
+
+	@Override
 	public void removeLayer(MapLayer layer) {
 		data.removeValue(layer, true);
 	}
@@ -79,14 +87,16 @@ public class BasicMapLayers implements MapLayers {
 	public void sortLayers(Comparator<MapLayer> comparator) {
 		data.sort(comparator);
 	}
-	
+
+	@Override
 	public void swapLayers(int index1, int index2) {
 		MapLayer layer1 = data.get(index1);
 		MapLayer layer2 = data.get(index2);
 		data.set(index1, layer2);
 		data.set(index2, layer1);
 	}
-	
+
+	@Override
 	public void swapLayers(MapLayer layer1, MapLayer layer2) {
 		int index1 = data.indexOf(layer1, true);
 		int index2 = data.indexOf(layer2, true);
@@ -94,6 +104,7 @@ public class BasicMapLayers implements MapLayers {
 		data.set(index2, layer1);
 	}
 
+	@Override
 	public void clearLayers() {
 		data.clear();
 	}
@@ -106,5 +117,5 @@ public class BasicMapLayers implements MapLayers {
 	public Iterator<MapLayer> iterator() {
 		return data.iterator();
 	}
-	
+
 }

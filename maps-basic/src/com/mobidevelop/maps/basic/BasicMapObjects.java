@@ -25,9 +25,9 @@ import com.mobidevelop.maps.MapObject;
 import com.mobidevelop.maps.MapObjects;
 
 public class BasicMapObjects implements MapObjects {
-	
+
 	private Array<MapObject> data;
-	
+
 	public BasicMapObjects() {
 		data = new Array<MapObject>();
 	}
@@ -35,15 +35,15 @@ public class BasicMapObjects implements MapObjects {
 	public int getCount() {
 		return data.size;
 	}
-	
+
 	public int getIndex(MapObject object) {
 		return data.indexOf(object, true);
 	}
-	
+
 	public MapObject getObject(int index) {
 		return data.get(index);
 	}
-	
+
 	public MapObject getObject(String name) {
 		for (int i = 0, j = data.size; i < j; i++) {
 			MapObject object = data.get(i);
@@ -53,6 +53,7 @@ public class BasicMapObjects implements MapObjects {
 		}
 		return null;
 	}
+
 	public void addObject(MapObject object) {
 		data.add(object);
 	}
@@ -64,7 +65,7 @@ public class BasicMapObjects implements MapObjects {
 	public MapObject removeObject(int index) {
 		return data.removeIndex(index);
 	}
-	
+
 	public void removeObject(MapObject object) {
 		data.removeValue(object, true);
 	}
@@ -75,7 +76,7 @@ public class BasicMapObjects implements MapObjects {
 		data.set(index1, object2);
 		data.set(index2, object1);
 	}
-	
+
 	public void swapObjects(MapObject object1, MapObject object2) {
 		int index1 = data.indexOf(object1, true);
 		int index2 = data.indexOf(object2, true);
@@ -86,11 +87,11 @@ public class BasicMapObjects implements MapObjects {
 	public void sortObjects() {
 		data.sort();
 	}
-	
+
 	public void sortObjects(Comparator<MapObject> comparator) {
 		data.sort(comparator);
 	}
-	
+
 	public void clearObjects() {
 		data.clear();
 	}
@@ -98,10 +99,10 @@ public class BasicMapObjects implements MapObjects {
 	public Iterable<MapObject> selectObjects(Predicate<MapObject> predicate) {
 		return data.select(predicate);		
 	}
-	
+
 	@Override
 	public Iterator<MapObject> iterator() {
 		return data.iterator();
 	}
-	
+
 }
