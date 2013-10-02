@@ -32,18 +32,22 @@ public class BasicMapObjects implements MapObjects {
 		data = new Array<MapObject>();
 	}
 
+	@Override	
 	public int getCount() {
 		return data.size;
 	}
 
+	@Override
 	public int getIndex(MapObject object) {
 		return data.indexOf(object, true);
 	}
 
+	@Override
 	public MapObject getObject(int index) {
 		return data.get(index);
 	}
 
+	@Override
 	public MapObject getObject(String name) {
 		for (int i = 0, j = data.size; i < j; i++) {
 			MapObject object = data.get(i);
@@ -54,22 +58,27 @@ public class BasicMapObjects implements MapObjects {
 		return null;
 	}
 
+	@Override
 	public void addObject(MapObject object) {
 		data.add(object);
 	}
 
+	@Override
 	public void addObject(int index, MapObject object) {
 		data.insert(index, object);
 	}
 
+	@Override
 	public MapObject removeObject(int index) {
 		return data.removeIndex(index);
 	}
 
+	@Override
 	public void removeObject(MapObject object) {
 		data.removeValue(object, true);
 	}
 
+	@Override
 	public void swapObjects(int index1, int index2) {
 		MapObject object1 = data.get(index1);
 		MapObject object2 = data.get(index2);
@@ -77,6 +86,7 @@ public class BasicMapObjects implements MapObjects {
 		data.set(index2, object1);
 	}
 
+	@Override
 	public void swapObjects(MapObject object1, MapObject object2) {
 		int index1 = data.indexOf(object1, true);
 		int index2 = data.indexOf(object2, true);
@@ -84,14 +94,17 @@ public class BasicMapObjects implements MapObjects {
 		data.set(index2, object1);
 	}
 
+	@Override
 	public void sortObjects() {
 		data.sort();
 	}
 
+	@Override
 	public void sortObjects(Comparator<MapObject> comparator) {
 		data.sort(comparator);
 	}
 
+	@Override
 	public void clearObjects() {
 		data.clear();
 	}
