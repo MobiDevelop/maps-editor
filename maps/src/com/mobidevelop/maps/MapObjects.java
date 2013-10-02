@@ -19,8 +19,6 @@ package com.mobidevelop.maps;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import com.badlogic.gdx.utils.Predicate;
-
 public interface MapObjects extends Iterable<MapObject> {
 
 	public int getCount();
@@ -48,8 +46,6 @@ public interface MapObjects extends Iterable<MapObject> {
 	public void sortObjects(Comparator<MapObject> comparator);
 	
 	public void clearObjects();
-
-	public Iterable<MapObject> selectObjects(Predicate<MapObject> predicate);
 
 	public Iterator<MapObject> iterator();
 	

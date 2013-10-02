@@ -16,9 +16,7 @@
 
 package com.mobidevelop.maps;
 
-import com.badlogic.gdx.utils.Disposable;
-
-public interface Map extends Disposable {
+public interface Map {
 
 	public abstract String getName();
 
@@ -45,5 +43,7 @@ public interface Map extends Disposable {
 	public abstract MapProperties getProperties();
 
 	public abstract MapResources getResources();
+
+	public abstract void dispose();
 
 }

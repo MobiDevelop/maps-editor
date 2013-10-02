@@ -19,8 +19,6 @@ package com.mobidevelop.maps;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import com.badlogic.gdx.utils.Predicate;
-
 public interface MapLayers extends Iterable<MapLayer> {
 
 	public int getCount();
@@ -48,8 +46,6 @@ public interface MapLayers extends Iterable<MapLayer> {
 	public void swapLayers(MapLayer layer1, MapLayer layer2);
 
 	public void clearLayers();
-
-	public Iterable<MapLayer> selectLayers(Predicate<MapLayer> predicate);
 
 	public Iterator<MapLayer> iterator();
 	

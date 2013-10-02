@@ -16,7 +16,6 @@
 
 package com.mobidevelop.maps.tiled;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mobidevelop.maps.MapProperties;
 
 public interface TiledMapTile {
@@ -24,10 +23,6 @@ public interface TiledMapTile {
 	public abstract int getId();
 	
 	public abstract void setId(int id);
-	
-	public abstract TextureRegion getTextureRegion();
-	
-	public abstract void setTextureRegion(TextureRegion textureRegion);
 	
 	public abstract MapProperties getProperties();
 	
