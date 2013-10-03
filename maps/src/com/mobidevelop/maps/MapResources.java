@@ -18,15 +18,15 @@ package com.mobidevelop.maps;
 
 public interface MapResources {
 	
-	public <T> T get(Class<T> type);
+	public abstract <T> T get(Class<T> type);
 	
-	public <T> T get(String name, Class<T> type);
+	public abstract <T> T get(String name, Class<T> type);
 	
-	public void put(String key, Object value);
+	public abstract void put(String key, Object value);
 	
-	public void put(String name, Object value, Class<?> type);
+	public abstract void put(String name, Object value, Class<?> type);
 	
-	public <T> void remove(String name, Class<T> type);
+	public abstract <T> void remove(String name, Class<T> type);
 
 	public abstract void dispose();
 

@@ -18,50 +18,50 @@ package com.mobidevelop.maps;
 
 public interface MapProperties {
 
-	public boolean containsKey(String key);
+	public abstract boolean containsKey(String key);
 
-	public Iterable<String> getKeys();
+	public abstract Iterable<String> getKeys();
 
-	public Object get(String key);
+	public abstract Object get(String key);
 
-	public Boolean getAsBoolean(String key);
+	public abstract Boolean getAsBoolean(String key);
 
-	public Boolean getAsBoolean(String key, Boolean defaultValue);
+	public abstract Boolean getAsBoolean(String key, Boolean defaultValue);
 
-	public Byte getAsByte(String key);
+	public abstract Byte getAsByte(String key);
 
-	public Byte getAsByte(String key, Byte defaultValue);
+	public abstract Byte getAsByte(String key, Byte defaultValue);
 
-	public Double getAsDouble(String key);
+	public abstract Double getAsDouble(String key);
 
-	public Double getAsDouble(String key, Double defaultValue);
+	public abstract Double getAsDouble(String key, Double defaultValue);
 
-	public Float getAsFloat(String key);
+	public abstract Float getAsFloat(String key);
 
-	public Float getAsFloat(String key, Float defaultValue);
+	public abstract Float getAsFloat(String key, Float defaultValue);
 	
-	public Integer getAsInteger(String key);
+	public abstract Integer getAsInteger(String key);
 
-	public Integer getAsInteger(String key, Integer defaultValue);
+	public abstract Integer getAsInteger(String key, Integer defaultValue);
 
-	public Long getAsLong(String key);
+	public abstract Long getAsLong(String key);
 
-	public Long getAsLong(String key, Long defaultValue);
+	public abstract Long getAsLong(String key, Long defaultValue);
 
-	public Short getAsShort(String key);
+	public abstract Short getAsShort(String key);
 
-	public Short getAsShort(String key, Short defaultValue);
+	public abstract Short getAsShort(String key, Short defaultValue);
 
-	public String getAsString(String key);
+	public abstract String getAsString(String key);
 
-	public String getAsString(String key, String defaultValue);
+	public abstract String getAsString(String key, String defaultValue);
 
-	public void put(String key, Object value);
+	public abstract void put(String key, Object value);
 
-	public void putAll(MapProperties properties);
+	public abstract void putAll(MapProperties properties);
 
-	public void remove(String key);
+	public abstract void remove(String key);
 
-	public void clear();
+	public abstract void clear();
 	
 }

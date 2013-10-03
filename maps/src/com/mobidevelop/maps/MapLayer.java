@@ -25,7 +25,7 @@ public interface MapLayer {
 	public abstract String getName();
 
 	public abstract void setName(String name);
-	
+
 	public abstract float getX();
 
 	public abstract void setX(float x);
