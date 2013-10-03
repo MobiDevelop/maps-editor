@@ -34,6 +34,10 @@ public class BasicMapObject implements MapObject {
 
 	private float height;
 
+	private float originX;
+
+	private float originY;
+
 	private float rotation;
 
 	private boolean visible;
@@ -98,6 +102,22 @@ public class BasicMapObject implements MapObject {
 	@Override
 	public void setHeight(float height) {
 		this.height = height;
+	}
+
+	public float getOriginX() {
+		return originX;
+	}
+
+	public void setOriginX(float originX) {
+		this.originX = originX;
+	}
+
+	public float getOriginY() {
+		return originY;
+	}
+
+	public void setOriginY(float originY) {
+		this.originY = originY;
 	}
 
 	@Override

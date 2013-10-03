@@ -42,6 +42,14 @@ public interface MapObject {
 
 	public abstract void setHeight(float height);
 
+	public abstract float getOriginX();
+
+	public abstract void setOriginX(float originX);
+
+	public abstract float getOriginY();
+
+	public abstract void setOriginY(float originY);
+
 	public abstract float getRotation();
 
 	public abstract void setRotation(float rotation);
