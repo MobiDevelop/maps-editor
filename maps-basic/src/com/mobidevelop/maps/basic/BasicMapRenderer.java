@@ -139,15 +139,15 @@ public class BasicMapRenderer {
 								objectsDrawn += 1;
 								if (object instanceof TextureRegionMapObject) {
 									TextureRegion region = map.getResources().get(((TextureRegionMapObject) object).getTextureRegionName(), TextureRegion.class);
-									batcher.draw(region, objectX, objectY, object.getWidth() / 2f, object.getHeight() / 2f, object.getWidth(), object.getHeight(), 1, 1, object.getRotation());									
+									batcher.draw(region, objectX, objectY, object.getOriginX(), object.getOriginY(), object.getWidth(), object.getHeight(), 1, 1, object.getRotation());
 								}
 								if (object instanceof PolygonMapObject) {
 									batcher.end();
 									renderer.begin(ShapeType.Filled);
 									Polygon poly = new Polygon(((PolygonMapObject) object).getVertices());
+									poly.setOrigin(object.getOriginX(), object.getOriginY());
 									poly.setPosition(objectX,  objectY);
 									poly.setRotation(object.getRotation());
-									poly.setOrigin(object.getWidth() / 2f, object.getHeight() / 2f);
 									float[] verts = poly.getTransformedVertices();
 									ShortArray indices = t.computeTriangles(verts);	
 									for (int i = 0; i < indices.size; i += 3) {
@@ -231,25 +231,25 @@ public class BasicMapRenderer {
 											break;
 									}
 									
-									float x = objectX + c * (v.x - object.getWidth() / 2) + -s * (v.y - object.getHeight() / 2);
-									float y = objectY + s * (v.x - object.getWidth() / 2) +  c * (v.y - object.getHeight() / 2);
+									float x = objectX + c * (v.x - object.getOriginX()) + -s * (v.y - object.getOriginY());
+									float y = objectY + s * (v.x - object.getOriginX()) +  c * (v.y - object.getOriginY());
 									
-									minX = Math.min(minX, x + object.getWidth() / 2);
-									maxX = Math.max(maxX, x + object.getWidth() / 2);
-									minY = Math.min(minY, y + object.getHeight() / 2);
-									maxY = Math.max(maxY, y + object.getHeight() / 2);
+									minX = Math.min(minX, x + object.getOriginX());
+									maxX = Math.max(maxX, x + object.getOriginX());
+									minY = Math.min(minY, y + object.getOriginY());
+									maxY = Math.max(maxY, y + object.getOriginY());
 								}
 								temp.set(minX, minY, maxX - minX, maxY - minY);
 							}
 							if (view.overlaps(temp) || view.contains(temp)) {
 								if (rotation == 0) {
 									renderer.setColor(0,1,0,1);
-									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight());										
+									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight());
 								} else {
 									renderer.setColor(0,1,0,1);
 									renderer.rect(temp.x, temp.y, temp.width, temp.height);
 									renderer.setColor(0,0.5f,0,1);
-									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight(), object.getWidth() / 2, object.getHeight() / 2, object.getRotation());
+									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight(), object.getOriginX(), object.getOriginY(), object.getRotation());
 								}
 							}
 						}
