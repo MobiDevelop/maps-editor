@@ -126,23 +126,17 @@ public class ModelMap extends BasicMap implements Model {
 
 	@Override
 	protected MapLayers createMapLayers() {
-		ModelMapLayers layers = new ModelMapLayers();
-		layers.addEventListener(this);
-		return layers;
+		return new ModelMapLayers();
 	}
 
 	@Override
 	protected MapProperties createMapProperties() {
-		ModelMapProperties properties = new ModelMapProperties();
-		properties.addEventListener(this);
-		return properties;
+		return new ModelMapProperties();
 	}
 
 	@Override
 	protected MapResources createMapResources() {
-		ModelMapResources resources = new ModelMapResources();
-		resources.addEventListener(this);
-		return resources;
+		return new ModelMapResources();
 	}
 	
 }
