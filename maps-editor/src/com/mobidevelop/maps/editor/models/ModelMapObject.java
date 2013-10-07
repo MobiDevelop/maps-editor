@@ -118,6 +118,18 @@ public class ModelMapObject extends BasicMapObject implements Model {
 	}
 
 	@Override
+	public void setOriginX(float originX) {
+		super.setOriginX(originX);
+		this.dispatchEvent(new MapObjectChangeEvent(this));
+	}
+
+	@Override
+	public void setOriginY(float originY) {
+		super.setOriginY(originY);
+		this.dispatchEvent(new MapObjectChangeEvent(this));
+	}
+
+	@Override
 	public void setRotation(float rotation) {
 		super.setRotation(rotation);
 		this.dispatchEvent(new MapObjectChangeEvent(this));
