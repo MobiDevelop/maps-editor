@@ -18,15 +18,15 @@ import com.mobidevelop.maps.objects.TextureRegionMapObject;
 
 public class BasicMapRenderer {
 	
-	private Map map;
+	protected Map map;
 	
-	private SpriteBatch batcher;
+	protected SpriteBatch batcher;
 	
-	private ShapeRenderer renderer;
+	protected ShapeRenderer renderer;
 	
-	private float[] vertices = new  float[8];
+	protected float[] vertices = new  float[8];
 	
-	private boolean debug = true;
+	protected boolean debug = true;
 	
 	public BasicMapRenderer(Map map) {
 		this.map = map;
@@ -34,8 +34,8 @@ public class BasicMapRenderer {
 		this.renderer = new ShapeRenderer();
 	}
 	
-	private Rectangle view = new Rectangle();
-	private Rectangle temp = new Rectangle();
+	protected Rectangle view = new Rectangle();
+	protected Rectangle temp = new Rectangle();
 	
 	public void setView(OrthographicCamera camera) {
 		batcher.setProjectionMatrix(camera.combined);
@@ -94,10 +94,10 @@ public class BasicMapRenderer {
 							if (rotation == 0) {
 								temp.set(objectX, objectY, object.getWidth(), object.getHeight());
 							} else {
-								float minX = Float.MAX_VALUE;
-								float maxX = Float.MIN_VALUE;
-								float minY = Float.MAX_VALUE;
-								float maxY = Float.MIN_VALUE;
+								float minX = +Float.MAX_VALUE;
+								float maxX = -Float.MAX_VALUE;
+								float minY = +Float.MAX_VALUE;
+								float maxY = -Float.MAX_VALUE;
 								
 								float r = (float) Math.toRadians(object.getRotation());
 								float c = (float) Math.cos(r);
@@ -119,13 +119,13 @@ public class BasicMapRenderer {
 											break;
 									}
 									
-									float x = objectX + c * (v.x - object.getWidth() / 2) + -s * (v.y - object.getHeight() / 2);
-									float y = objectY + s * (v.x - object.getWidth() / 2) +  c * (v.y - object.getHeight() / 2);
+									float x = objectX + c * (v.x - object.getOriginX()) + -s * (v.y - object.getOriginY());
+									float y = objectY + s * (v.x - object.getOriginX()) +  c * (v.y - object.getOriginY());
 									
-									minX = Math.min(minX, x + object.getWidth() / 2);
-									maxX = Math.max(maxX, x + object.getWidth() / 2);
-									minY = Math.min(minY, y + object.getHeight() / 2);
-									maxY = Math.max(maxY, y + object.getHeight() / 2);
+									minX = Math.min(minX, x + object.getOriginX());
+									maxX = Math.max(maxX, x + object.getOriginX());
+									minY = Math.min(minY, y + object.getOriginY());
+									maxY = Math.max(maxY, y + object.getOriginY());
 								}
 								temp.set(minX, minY, maxX - minX, maxY - minY);
 							}
@@ -206,10 +206,10 @@ public class BasicMapRenderer {
 							if (rotation == 0) {
 								temp.set(objectX, objectY, object.getWidth(), object.getHeight());
 							} else {
-								float minX = Float.MAX_VALUE;
-								float maxX = Float.MIN_VALUE;
-								float minY = Float.MAX_VALUE;
-								float maxY = Float.MIN_VALUE;
+								float minX = +Float.MAX_VALUE;
+								float maxX = -Float.MAX_VALUE;
+								float minY = +Float.MAX_VALUE;
+								float maxY = -Float.MAX_VALUE;
 								
 								float r = (float) Math.toRadians(object.getRotation());
 								float c = (float) Math.cos(r);
@@ -233,7 +233,6 @@ public class BasicMapRenderer {
 									
 									float x = objectX + c * (v.x - object.getOriginX()) + -s * (v.y - object.getOriginY());
 									float y = objectY + s * (v.x - object.getOriginX()) +  c * (v.y - object.getOriginY());
-									
 									minX = Math.min(minX, x + object.getOriginX());
 									maxX = Math.max(maxX, x + object.getOriginX());
 									minY = Math.min(minY, y + object.getOriginY());
@@ -246,11 +245,16 @@ public class BasicMapRenderer {
 									renderer.setColor(0,1,0,1);
 									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight());
 								} else {
-									renderer.setColor(0,1,0,1);
+									renderer.setColor(0,0.333f,0,1);
 									renderer.rect(temp.x, temp.y, temp.width, temp.height);
-									renderer.setColor(0,0.5f,0,1);
+									renderer.setColor(0,1.0f,0,1);
 									renderer.rect(objectX, objectY, object.getWidth(), object.getHeight(), object.getOriginX(), object.getOriginY(), object.getRotation());
 								}
+								Vector2 origin = new Vector2(objectX + object.getOriginX(), objectY + object.getOriginY());
+								Vector2 dir    = new Vector2((object.getWidth() - object.getOriginX()) + 1, 0).rotate(rotation).add(origin);
+								renderer.setColor(0,0.5f,0,1);
+								renderer.line(origin, dir);
+								renderer.circle(dir.x, dir.y, 0.1f, 10);
 							}
 						}
 					}
