@@ -21,32 +21,32 @@ import java.util.Iterator;
 
 public interface MapObjects extends Iterable<MapObject> {
 
-	public int getCount();
+	public abstract int getCount();
 
-	public int getIndex(MapObject object);
+	public abstract int getIndex(MapObject object);
 	
-	public MapObject getObject(int index);
+	public abstract MapObject getObject(int index);
 	
-	public MapObject getObject(String name);
+	public abstract MapObject getObject(String name);
 	
-	public void addObject(MapObject object);
+	public abstract void addObject(MapObject object);
 
-	public void addObject(int index, MapObject object);
+	public abstract void addObject(int index, MapObject object);
 
-	public MapObject removeObject(int index);
+	public abstract MapObject removeObject(int index);
 	
-	public void removeObject(MapObject object);
+	public abstract void removeObject(MapObject object);
 
-	public void swapObjects(int index1, int index2);
+	public abstract void swapObjects(int index1, int index2);
 	
-	public void swapObjects(MapObject object1, MapObject object2);
+	public abstract void swapObjects(MapObject object1, MapObject object2);
 
-	public void sortObjects();
+	public abstract void sortObjects();
 	
-	public void sortObjects(Comparator<MapObject> comparator);
+	public abstract void sortObjects(Comparator<MapObject> comparator);
 	
-	public void clearObjects();
+	public abstract void clearObjects();
 
-	public Iterator<MapObject> iterator();
+	public abstract Iterator<MapObject> iterator();
 	
 }

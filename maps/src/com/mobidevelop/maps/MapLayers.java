@@ -21,32 +21,32 @@ import java.util.Iterator;
 
 public interface MapLayers extends Iterable<MapLayer> {
 
-	public int getCount();
+	public abstract int getCount();
 
-	public int getIndex(MapLayer layer);
+	public abstract int getIndex(MapLayer layer);
 	
-	public MapLayer getLayer(int index);
+	public abstract MapLayer getLayer(int index);
 	
-	public MapLayer getLayer(String name);
+	public abstract MapLayer getLayer(String name);
 	
-	public void addLayer(MapLayer layer);
+	public abstract void addLayer(MapLayer layer);
 
-	public void addLayer(int index, MapLayer layer);
+	public abstract void addLayer(int index, MapLayer layer);
 
-	public MapLayer removeLayer(int index);
+	public abstract MapLayer removeLayer(int index);
 	
-	public void removeLayer(MapLayer layer);
+	public abstract void removeLayer(MapLayer layer);
 
-	public void sortLayers();
+	public abstract void sortLayers();
 
-	public void sortLayers(Comparator<MapLayer> comparator);
+	public abstract void sortLayers(Comparator<MapLayer> comparator);
 
-	public void swapLayers(int index1, int index2);
+	public abstract void swapLayers(int index1, int index2);
 
-	public void swapLayers(MapLayer layer1, MapLayer layer2);
+	public abstract void swapLayers(MapLayer layer1, MapLayer layer2);
 
-	public void clearLayers();
+	public abstract void clearLayers();
 
-	public Iterator<MapLayer> iterator();
+	public abstract Iterator<MapLayer> iterator();
 	
 }
