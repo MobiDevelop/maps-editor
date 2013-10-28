@@ -29,6 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Timer;
@@ -55,7 +56,15 @@ public class Tooltips {
 
 	private TooltipStyle tooltipStyle;
 	
-	public Tooltips(TooltipStyle style,Stage stage) {
+	public Tooltips(Skin skin, Stage stage) {
+		this(skin.get(TooltipStyle.class), stage);
+	}
+
+	public Tooltips(Skin skin, String styleName, Stage stage) {
+		this(skin.get(styleName, TooltipStyle.class), stage);
+	}
+
+	public Tooltips(TooltipStyle style, Stage stage) {
 		this.tooltips =new ObjectMap<Actor, String>(); 
 		this.stage = stage;
 		this.tooltipStyle = style;

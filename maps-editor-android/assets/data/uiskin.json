@@ -7,7 +7,8 @@ com.badlogic.gdx.graphics.Color: {
 	black: { a: 1, b: 0, g: 0, r: 0 }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
-	dialogDim: { name: white, color: { r: 0, g: 0, b: 0, a: 0.45 } }
+	dialogDim: { name: white, color: { r: 0, g: 0, b: 0, a: 0.45 } },
+	tooltipBackground: { name: white, color: { r: 0.996, g: 1.000, b: 0.804, a: 1.000 } }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 	default: { down: default-round-down, up: default-round },
@@ -55,5 +56,8 @@ com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
 	default: { minus: tree-minus, plus: tree-plus, selection: default-select-selection }
+},
+com.mobidevelop.maps.editor.ui.utils.Tooltips$TooltipStyle: {
+	default: { font: default-font, fontColor: white, background: tooltipBackground }
 }
 }
